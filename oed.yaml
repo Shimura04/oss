@@ -1,0 +1,77 @@
+openapi: 3.0.0
+info:
+  title: omerfarukyigit
+  description: homework for open source class
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+paths:
+  /items:
+    get:
+      summary: List all items
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create a new item
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '201':
+          description: Created
+    /{id}:
+      get:
+        summary: Get an item by ID
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+        responses:
+          '200':
+            description: OK
+          '404':
+            description: Not found
+      put:
+        summary: Update an item by ID
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+        responses:
+          '200':
+            description: OK
+          '404':
+            description: Not found
+      delete:
+        summary: Delete an item by ID
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+        responses:
+          '204':
+            description: No content
+          '404':
+            description: Not found
